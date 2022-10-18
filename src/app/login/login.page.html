@@ -1,0 +1,61 @@
+<ion-header>
+</ion-header>
+<ion-content style="padding: 20px;">
+
+  <img style="width: 100%;" src="assets/img/cosa.jpeg" />
+
+  <ion-card>
+    <ion-segment (ionChange)="toggleopt()" color="tertiary">
+      <ion-segment-button value="true">Logear</ion-segment-button>
+      <ion-segment-button value="false">Registrarse</ion-segment-button>
+    </ion-segment>
+    <form #usuarioform="ngForm">
+      <ion-item *ngIf="!opt">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input name="name" #name="ngModel" [(ngModel)]="userService.selecteduser.name" (click)="nameC=true"></ion-input>
+      </ion-item>
+      <span *ngIf="!nameC && !opt && eq" style="color:red">El nombre no es válido</span>
+      <ion-input name="role" #role="ngModel" type="hidden" value="humano" [(ngModel)]="userService.selecteduser.role">
+      </ion-input>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input name="email" #email="ngModel" [(ngModel)]="userService.selecteduser.email" (click)="emailC=true"></ion-input>
+      </ion-item>
+      <span *ngIf="!emailC && !opt && eq" style="color:red">El correo electrónico no es válido</span>
+      <ion-item *ngIf="!opt">
+        <ion-label position="floating">Direccion</ion-label>
+        <ion-input name="direccion" #direccion="ngModel" [(ngModel)]="userService.selecteduser.direccion" (click)="dirC=true"></ion-input>
+      </ion-item>
+      <span *ngIf="!dirC && !opt && eq" style="color:red">La dirección no es válida no es válido</span>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" name="password" #password="ngModel" [(ngModel)]="userService.selecteduser.password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+        </ion-input>
+      </ion-item>
+      <ion-item *ngIf="!opt">
+        <ion-label position="floating">Confirmar contraseña</ion-label>
+        <ion-input type="password" name="password2" #password="ngModel" [(ngModel)]="password2" (click)="bandera=true"></ion-input>
+      </ion-item>
+        <span *ngIf="!bandera && !opt && eq" style="color:red">Las contrasenas no coinciden</span>
+        <ion-button color="tertiary" typ="submmit" *ngIf="!opt" expand="block" (click)="Registrarse(usuarioform)">Registrarse
+        </ion-button>
+      <ion-button color="tertiary" *ngIf="opt" expand="block" (click)="iniciarSesion(usuarioform)">Iniciar Sesion
+      </ion-button>
+      <ion-button color="warning" *ngIf="!opt" expand="block" (click)="resetForm(usuarioform)">Cancelar</ion-button>
+    </form>
+    <ion-item-divider color="white"></ion-item-divider>
+
+
+  </ion-card>
+  <p style="text-align: center;"> OR</p>
+  <div class="container" style="display: flex;padding: 50px;">
+    <a href="#" style="width: 33%;"><img src="assets/img/facebook.png" style="height: 70px;"></a>
+    <a href="#" style="width: 33%;"><img src="assets/img/twitter.png" style="height: 70px;"></a>
+    <a href="#" style="width: 33%;"><img src="assets/img/you.png" style="height: 70px;"></a>
+  </div>
+  <div class="container" style="display: flex; padding: 50px;">
+    <a href="#" style="width: 33%;"><img src="assets/img/instagram.png" style="height: 70px;"></a>
+    <a href="#" style="width: 33%;"><img src="assets/img/snap.png" style="height: 70px;"></a>
+    <a href="#" style="width: 33%;"><img src="assets/img/whats.png" style="height: 70px;"></a>
+  </div>
+</ion-content>
